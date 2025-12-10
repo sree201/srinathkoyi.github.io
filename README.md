@@ -87,8 +87,18 @@ portfolio-website/
 
 ## Deployment
 
-You can deploy this portfolio to:
-- **GitHub Pages**: Push to a GitHub repository and enable Pages
+### GitHub Pages (Recommended)
+
+1. **Initial Setup**: Deploy to GitHub Pages at `sree201.github.io`
+   - See `DEPLOY.md` for step-by-step instructions
+   
+2. **Custom Domain**: Set up `srinathkoyi.io` as your custom domain
+   - See `CUSTOM_DOMAIN_SETUP.md` for detailed instructions
+   - Requires purchasing the domain (~$10-15/year)
+   - GitHub provides free SSL certificate
+
+### Other Hosting Options
+
 - **Netlify**: Drag and drop the folder to Netlify
 - **Vercel**: Connect your GitHub repository
 - **AWS S3**: Upload files to an S3 bucket with static website hosting
@@ -101,6 +111,8 @@ You can deploy this portfolio to:
 - **Phone**: +1 (657) 877-9052
 - **Location**: Los Angeles, CA, USA
 - **LinkedIn**: [Srinath Koyi](https://www.linkedin.com/in/srinath-k-6572389590s/)
+- **Portfolio URL**: https://srinathkoyi.cloud (custom domain from Hostinger ✅)
+- **GitHub**: [sree201](https://github.com/sree201)
 
 ---
 
