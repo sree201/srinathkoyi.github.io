@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ device.device_name }} - Browser - CCNA Labs{% endblock %}
+
+{% block content %}
+<section class="pc-browser-section">
+    <div class="container">
+        <div class="browser-header">
+            <h2>{{ device.device_name }} - Browser</h2>
+            <p class="text-muted">Simulated browser for device <strong>{{ device.device_name }}</strong> in lab <strong>{{ lab.title }}</strong>.</p>
+        </div>
+
+        <div class="browser-controls">
+            <div class="form-inline">
+                <input id="host-input" type="text" class="form-control" placeholder="Enter hostname (e.g. example.local)">
+                <button id="browse-btn" class="btn btn-primary">Go</button>
+            </div>
+
+            <div style="margin-top:10px;">
+                <small>To add a hostname mapping:</small>
+                <div class="form-inline" style="margin-top:8px; gap:8px;">
+                    <input id="dns-host-input" type="text" class="form-control" placeholder="host (e.g. example.local)">
+                    <input id="dns-response-input" type="text" class="form-control" placeholder="HTML/text response" style="width:50%">
+                    <button id="add-dns-btn" class="btn btn-secondary">Add DNS</button>
+                </div>
+                <small id="dns-message" style="display:block;margin-top:6px;color:#ffb3b3"></small>
+            </div>
+        </div>
+
+        <div id="browser-output" class="browser-output" style="margin-top:20px; background:#0b1220; color:#cfe8d8; padding:15px; min-height:200px;">
+            <em>Browser output will appear here</em>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/pc_browser.js') }}"></script>
+<script>
+// Initialize host placeholder focus
+document.getElementById('host-input').focus();
+</script>
+{% endblock %}

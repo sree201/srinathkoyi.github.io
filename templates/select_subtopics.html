@@ -1,0 +1,75 @@
+# THIS CODE GOES IN app.py - NOT in the HTML file
+# This is the select_subtopics route in your Flask app
+
+@app.route("/build-lab/<topic>/subtopics", methods=["GET", "POST"])
+@login_required
+def select_subtopics(topic):
+    """Sub-topic selection page"""
+    if request.method == "POST":
+        subtopics = request.form.getlist("subtopics")
+        difficulty = request.form.get("difficulty")
+        if subtopics and difficulty:
+            session["lab_preferences"] = {
+                "topic": topic,
+                "subtopics": subtopics,
+                "difficulty": difficulty
+            }
+            return redirect(url_for("lab_list", topic=topic, difficulty=difficulty))
+    
+    # Define sub-topics for each topic
+    subtopics_map = {
+        "networking": [
+            "OSI Model & TCP/IP",
+            "DNS",
+            "HTTP/HTTPS",
+            "Subnetting & CIDR",
+            "Firewalls & Security Groups",
+            "Load Balancing",
+            "VPNs & Tunneling",
+            "BGP & Routing Protocols",
+            "VPC & Cloud Networking",
+            "Network Troubleshooting Tools",
+            "Software Defined Networking (SDN)"
+        ],
+        # ADD LINUX SUBTOPICS HERE
+        "linux": [
+            "Command Line Basics",
+            "File System & Permissions",
+            "Shell Scripting (Bash)",
+            "Process Management",
+            "Systemd & Service Management",
+            "User & Group Management",
+            "Linux Networking Tools (ip, ss)",
+            "Package Management (apt/yum)",
+            "Linux Security & Hardening",
+            "I/O Redirection & Pipelines",
+            "Kernel Basics"
+        ],
+        "docker": [
+            "Image Creation & Dockerfiles",
+            "Docker Swarm",
+            "Docker Registries",
+            "Health Checks & Monitoring",
+            "Docker Networking",
+            "Container Security",
+            "Multi-stage Builds",
+            "Docker Compose",
+            "Docker Volumes & Persistence",
+            "Docker Engine Internals"
+        ],
+        "kubernetes": [
+            "Pods & Containers",
+            "Deployments & ReplicaSets",
+            "Services & Networking",
+            "ConfigMaps & Secrets",
+            "Persistent Volumes",
+            "Ingress Controllers",
+            "Helm Charts",
+            "Kubernetes Networking",
+            "RBAC & Security",
+            "Monitoring & Logging"
+        ]
+    }
+    
+    subtopics = subtopics_map.get(topic.lower(), [])
+    return render_template("select_subtopics.html", topic=topic, subtopics=subtopics)

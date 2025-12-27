@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Labs - CCNA Labs{% endblock %}
+
+{% block content %}
+<section class="labs-section">
+    <div class="container">
+        <h1 class="page-title">All Labs</h1>
+        
+        <!-- Filter Section -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Beginner">Beginner</button>
+            <button class="filter-btn" data-filter="Intermediate">Intermediate</button>
+            <button class="filter-btn" data-filter="Advanced">Advanced</button>
+        </div>
+        
+        <!-- Labs Grid -->
+        <div class="labs-grid">
+            {% for lab in labs %}
+            <div class="lab-card" data-difficulty="{{ lab.difficulty }}">
+                <div class="lab-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>{{ lab.title }}</h3>
+                <p>{{ lab.description }}</p>
+                <div class="lab-card-footer">
+                    <span class="lab-difficulty difficulty-{{ lab.difficulty.lower() }}">{{ lab.difficulty }}</span>
+                    <span class="lab-category">{{ lab.category }}</span>
+                    <a href="{{ url_for('lab_detail', lab_id=lab.id) }}" class="btn btn-sm btn-primary">Start Lab</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter labs
+        document.querySelectorAll('.lab-card').forEach(card => {
+            if (filter === 'all' || card.dataset.difficulty === filter) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
+

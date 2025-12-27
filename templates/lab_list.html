@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ topic|title }} Labs - CCNA Labs{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lab_list.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="lab-list-section">
+    <div class="lab-list-container">
+        <!-- Left Sidebar -->
+        <aside class="lab-sidebar">
+            <div class="sidebar-header">
+                <a href="{{ url_for('build_lab') }}" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="header-content">
+                    <div class="header-icon">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <h1>{{ topic|title }}</h1>
+                    <p class="lab-count">{{ labs|length }} Labs</p>
+                </div>
+            </div>
+            
+            <div class="labs-list">
+                {% for lab in labs %}
+                <div class="lab-item" data-lab-id="{{ lab.id }}">
+                    <div class="lab-number">Lab {{ loop.index0 }}</div>
+                    <h3>{{ lab.title }}</h3>
+                    <p>{{ lab.description }}</p>
+                </div>
+                {% else %}
+                <div class="no-labs">
+                    <p>No labs found for {{ topic|title }} with {{ difficulty }} difficulty.</p>
+                    <a href="{{ url_for('build_lab') }}" class="btn btn-primary">Start Over</a>
+                </div>
+                {% endfor %}
+            </div>
+        </aside>
+
+        <!-- Right Content Area -->
+        <main class="lab-content-area">
+            <div class="content-placeholder">
+                <div class="placeholder-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <h2>Select a lab from the left panel</h2>
+                <p>Choose a lab to view its learning content and tasks.</p>
+            </div>
+        </main>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.lab-item').forEach(item => {
+    item.addEventListener('click', function() {
+        const labId = this.dataset.labId;
+        
+        // Remove active class from all items
+        document.querySelectorAll('.lab-item').forEach(i => i.classList.remove('active'));
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Load lab content (you can make an AJAX call here or redirect)
+        window.location.href = `/lab/${labId}`;
+    });
+});
+</script>
+{% endblock %}
+

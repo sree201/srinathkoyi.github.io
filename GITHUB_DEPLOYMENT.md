@@ -39,7 +39,7 @@ This is the most professional option as it gives you a clean URL: `https://srina
 
 ### Step 2: Push Your Code to GitHub
 
-Run these commands in your terminal (you're already in the portfolio-website directory):
+Run these commands in your terminal (you're already in the CCNA-Website directory):
 
 ```bash
 # Add all files
@@ -84,8 +84,8 @@ git push -u origin main
 Whenever you make changes:
 
 ```bash
-# Navigate to portfolio directory
-cd portfolio-website
+# Navigate to project directory
+cd CCNA-Website
 
 # Add changes
 git add .
@@ -128,7 +128,7 @@ If you have a custom domain (e.g., `srinathkoyi.com`):
 
 ```bash
 # Initial setup (one time)
-cd portfolio-website
+cd CCNA-Website
 git add .
 git commit -m "Initial commit: Portfolio website"
 git remote add origin https://github.com/YOUR_USERNAME/srinathkoyi.github.io.git

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Build Your Personalized Lab - CCNA Labs{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/personalized_lab.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="build-lab-section">
+    <div class="container">
+        <div class="build-lab-container">
+            <div class="build-lab-header">
+                <h1><i class="fas fa-sparkles"></i> Build Your Personalized Lab</h1>
+                <p>Select your topic, sub-topics, and desired difficulty to get started.</p>
+            </div>
+
+            <form method="POST" action="{{ url_for('build_lab') }}" class="build-lab-form">
+                <div class="topic-section">
+                    <h2>What do you want to learn today?</h2>
+                    <div class="topics-grid">
+                        <label class="topic-card">
+                            <input type="radio" name="topic" value="docker" required>
+                            <div class="topic-content">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                            </div>
+                        </label>
+                        <label class="topic-card">
+                            <input type="radio" name="topic" value="kubernetes" required>
+                            <div class="topic-content">
+                                <i class="fas fa-cube"></i>
+                                <span>Kubernetes</span>
+                            </div>
+                        </label>
+                        <label class="topic-card">
+                            <input type="radio" name="topic" value="linux" required>
+                            <div class="topic-content">
+                                <i class="fab fa-linux"></i>
+                                <span>Linux</span>
+                            </div>
+                        </label>
+                        <label class="topic-card">
+                            <input type="radio" name="topic" value="networking" required>
+                            <div class="topic-content">
+                                <i class="fas fa-network-wired"></i>
+                                <span>Networking</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">Continue <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('input[name="topic"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        if (this.checked) {
+            this.closest('.topic-card').classList.add('selected');
+        }
+    });
+});
+</script>
+{% endblock %}
+

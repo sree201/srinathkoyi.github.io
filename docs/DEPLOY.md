@@ -22,7 +22,7 @@
 
 ## Step 2: Push Your Code
 
-Run these commands in your terminal (you're already in the portfolio-website directory):
+Run these commands in your terminal (you're already in the CCNA-Website directory):
 
 ```bash
 # Add remote repository
