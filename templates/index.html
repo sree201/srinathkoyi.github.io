@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Master CCNA with CCNA Labs - Networking Practice Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Master CCNA with <span class="highlight">CCNA Labs</span>
+            </h1>
+            <p class="hero-subtitle">
+                Learn by solving real-world CCNA challenges. Practice on Cisco and Arista devices with hands-on labs designed for CCNA exam preparation.
+            </p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started Free</a>
+                <a href="#features" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="terminal-preview">
+                <div class="terminal-header">
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-dot"></span>
+                    <span class="terminal-title">CCNA Lab Terminal</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">$ show ip interface brief</div>
+                    <div class="terminal-line">Interface                  IP-Address      OK? Method Status</div>
+                    <div class="terminal-line">GigabitEthernet0/0/0        192.168.1.1     YES NVRAM  up</div>
+                    <div class="terminal-line">$ configure terminal</div>
+                    <div class="terminal-line">Enter configuration commands, one per line...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features">
+    <div class="container">
+        <h2 class="section-title">Experience Real CCNA Labs</h2>
+        <p class="section-subtitle">Practice in production-like environments with real Cisco and Arista device configurations</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-network-wired"></i>
+                </div>
+                <h3>Cisco Devices</h3>
+                <p>Practice on Cisco routers and switches with various models (ISR, Catalyst, etc.)</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h3>Arista Switches</h3>
+                <p>Learn Arista EOS configuration with DCS series switches</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <h3>Real Terminal</h3>
+                <p>Interactive command-line interface just like real network devices</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>CCNA Focused</h3>
+                <p>Labs designed specifically for CCNA exam topics</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Labs Preview Section -->
+<section class="labs-preview">
+    <div class="container">
+        <h2 class="section-title">Hands-On Labs</h2>
+        <div class="labs-grid">
+            <div class="lab-card">
+                <div class="lab-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <h3>Routing Labs</h3>
+                <p>Static routes, OSPF, EIGRP, and routing protocols</p>
+                <span class="lab-difficulty difficulty-beginner">Beginner</span>
+            </div>
+            <div class="lab-card">
+                <div class="lab-icon">
+                    <i class="fas fa-switch"></i>
+                </div>
+                <h3>Switching Labs</h3>
+                <p>VLANs, STP, trunking, and switch configuration</p>
+                <span class="lab-difficulty difficulty-beginner">Beginner</span>
+            </div>
+            <div class="lab-card">
+                <div class="lab-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Security Labs</h3>
+                <p>ACLs, port security, and network security basics</p>
+                <span class="lab-difficulty difficulty-intermediate">Intermediate</span>
+            </div>
+            <div class="lab-card">
+                <div class="lab-icon">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <h3>WAN Technologies</h3>
+                <p>PPP, Frame Relay, and WAN connectivity</p>
+                <span class="lab-difficulty difficulty-intermediate">Intermediate</span>
+            </div>
+        </div>
+        {% if not current_user.is_authenticated %}
+        <div class="cta-section">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-large">Start Practicing Now</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- AI Coach Section -->
+<section class="ai-coach">
+    <div class="container">
+        <div class="ai-coach-content">
+            <div class="ai-coach-text">
+                <h2>Your Personal AI Lab Coach</h2>
+                <p>Get personalized lab recommendations based on your skill level and learning goals. Practice exactly what you need for the CCNA exam.</p>
+                <ul class="ai-benefits">
+                    <li><i class="fas fa-check"></i> Labs tailored to your skill level</li>
+                    <li><i class="fas fa-check"></i> Focus on CCNA exam topics</li>
+                    <li><i class="fas fa-check"></i> Real device configurations</li>
+                </ul>
+                {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+                {% else %}
+                <a href="{{ url_for('ai_lab_coach') }}" class="btn btn-primary">Design Your Lab</a>
+                {% endif %}
+            </div>
+            <div class="ai-coach-visual">
+                <div class="ai-animation">
+                    <i class="fas fa-robot"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter">
+    <div class="container">
+        <h2>Stay Updated with Lab Updates</h2>
+        <p>Get notifications about new labs, tutorials, and CCNA insights delivered to your inbox.</p>
+        {% if not current_user.is_authenticated %}
+        <form class="newsletter-form" onsubmit="alert('Newsletter feature coming soon!'); return false;">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+

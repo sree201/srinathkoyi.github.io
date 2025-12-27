@@ -1,0 +1,594 @@
+/* Terminal Styles for Lab Interface */
+
+.lab-detail-section {
+    padding: 40px 0;
+}
+
+.lab-header {
+    margin-bottom: 2rem;
+}
+
+.lab-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.lab-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.lab-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.lab-meta span {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.lab-status {
+    background: var(--dark-card);
+    color: var(--text-secondary);
+}
+
+.lab-content {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 15px;
+    margin-bottom: 3rem;
+    height: calc(100vh - 200px);
+}
+
+/* Devices Sidebar */
+.devices-sidebar {
+    background: var(--dark-card);
+    border-radius: 10px;
+    padding: 1rem;
+    height: calc(100vh - 250px);
+    max-height: calc(100vh - 250px);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide scrollbar for devices sidebar */
+.devices-sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.devices-sidebar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.devices-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.devices-sidebar h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.devices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    padding-right: 4px;
+}
+
+/* Hide scrollbar for devices list but keep functionality */
+.devices-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.devices-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.devices-list::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 2px;
+}
+
+.devices-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+}
+
+.device-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--dark-bg);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    min-width: 0;
+}
+
+.device-item:hover {
+    border-color: var(--primary-color);
+    transform: translateX(3px);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.device-item.active {
+    border-color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.device-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.device-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.device-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.device-info strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.device-info small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.device-details {
+    display: none;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.device-item.expanded .device-details {
+    display: block;
+}
+
+.device-spec {
+    margin-bottom: 0.5rem;
+}
+
+.device-spec-label {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.device-spec-value {
+    color: var(--text-secondary);
+}
+
+.device-usefulness {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.device-usefulness-title {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.device-usefulness-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.25rem 0 0 0;
+}
+
+.device-usefulness-list li {
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.device-usefulness-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.device-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.device-actions .btn {
+    white-space: nowrap;
+    min-width: auto;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.device-expand-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    transition: all 0.3s;
+    margin-left: auto;
+}
+
+.device-expand-btn:hover {
+    color: var(--primary-color);
+}
+
+.device-expand-btn i {
+    transition: transform 0.3s;
+}
+
+.device-item.expanded .device-expand-btn i {
+    transform: rotate(180deg);
+}
+
+/* Terminal Container */
+.terminal-container {
+    background: var(--dark-card);
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: calc(100vh - 250px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-tabs {
+    display: flex;
+    background: var(--dark-bg);
+    border-bottom: 2px solid var(--border-color);
+    overflow-x: auto;
+}
+
+.terminal-tab {
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.terminal-tab:hover {
+    color: var(--text-primary);
+    background: var(--dark-card);
+}
+
+.terminal-tab.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    background: var(--dark-card);
+}
+
+.terminal-wrapper {
+    display: none;
+    flex: 1;
+    padding: 1.5rem;
+    background: #1a202c;
+    min-height: calc(100vh - 320px);
+    height: 100%;
+}
+
+.terminal-wrapper.active {
+    display: block;
+}
+
+.terminal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    color: #10b981;
+}
+
+.terminal-line {
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.prompt {
+    color: #3b82f6;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.cursor-blink {
+    animation: blink 1s infinite;
+    color: #10b981;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #10b981;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.95rem;
+    outline: none;
+    padding: 0.5rem 0;
+}
+
+.terminal-input::placeholder {
+    color: rgba(16, 185, 129, 0.5);
+}
+
+/* Terminal Scrollbar */
+.terminal-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Lab Instructions */
+.lab-instructions {
+    background: var(--dark-card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.lab-instructions h3 {
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+}
+
+.instructions-content {
+    color: var(--text-secondary);
+}
+
+.instructions-content p {
+    margin-bottom: 1rem;
+}
+
+.instructions-content ul {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.instructions-content li {
+    margin-bottom: 0.5rem;
+}
+
+.instructions-content code {
+    background: var(--dark-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: var(--primary-color);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+/* Topology Panel */
+.topology-panel {
+    background: var(--dark-card);
+    border-radius: 10px;
+    padding: 1rem;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+    position: sticky;
+    top: 90px;
+}
+
+.topology-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.topology-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.topology-header .btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.topology-legend {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Device Login Modal */
+.device-login-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.device-login-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.device-login-content {
+    background: var(--dark-card);
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+}
+
+.device-login-content h3 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.device-login-content input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    background: var(--dark-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.device-login-content input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.device-login-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .lab-content {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+@media (max-width: 968px) {
+    .lab-content {
+        grid-template-columns: 1fr;
+    }
+
+    .devices-sidebar {
+        position: static;
+        max-height: 400px;
+        height: auto;
+    }
+
+    .devices-list {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .device-item {
+        min-width: 200px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .lab-title {
+        font-size: 2rem;
+    }
+
+    .terminal-tabs {
+        overflow-x: auto;
+    }
+
+    .terminal-tab {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+

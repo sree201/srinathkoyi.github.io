@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - CCNA Labs{% endblock %}
+
+{% block content %}
+<section class="dashboard-section">
+    <div class="container">
+        <h1 class="page-title">Welcome back, {{ current_user.username }}!</h1>
+        
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ completed_labs }}</h3>
+                    <p>Labs Completed</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ available_labs|length }}</h3>
+                    <p>Available Labs</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-content">
+                    <h3>{{ user_labs|length }}</h3>
+                    <p>Labs Started</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- My Labs Section -->
+        <div class="dashboard-section-content">
+            <h2 class="section-title">My Labs</h2>
+            {% if user_labs %}
+            <div class="labs-list">
+                {% for user_lab in user_labs %}
+                <div class="lab-item-card">
+                    <div class="lab-item-header">
+                        <h3>{{ user_lab.lab.title }}</h3>
+                        <span class="status-badge status-{{ user_lab.status.lower().replace(' ', '-') }}">{{ user_lab.status }}</span>
+                    </div>
+                    <p class="lab-item-description">{{ user_lab.lab.description }}</p>
+                    <div class="lab-item-footer">
+                        <span class="lab-difficulty difficulty-{{ user_lab.lab.difficulty.lower() }}">{{ user_lab.lab.difficulty }}</span>
+                        <a href="{{ url_for('lab_detail', lab_id=user_lab.lab.id) }}" class="btn btn-sm btn-primary">Continue Lab</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-flask"></i>
+                <p>You haven't started any labs yet.</p>
+                <a href="{{ url_for('labs') }}" class="btn btn-primary">Browse Labs</a>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Available Labs Section -->
+        <div class="dashboard-section-content">
+            <h2 class="section-title">Available Labs</h2>
+            <div class="labs-grid">
+                {% for lab in available_labs[:6] %}
+                <div class="lab-card">
+                    <div class="lab-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>{{ lab.title }}</h3>
+                    <p>{{ lab.description[:100] }}{% if lab.description|length > 100 %}...{% endif %}</p>
+                    <div class="lab-card-footer">
+                        <span class="lab-difficulty difficulty-{{ lab.difficulty.lower() }}">{{ lab.difficulty }}</span>
+                        <a href="/lab/{{ lab.id }}" class="btn btn-sm btn-primary">Start Lab</a> class="btn btn-sm btn-primary">Start Lab</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="text-center">
+                <a href="{{ url_for('labs') }}" class="btn btn-secondary">View All Labs</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
